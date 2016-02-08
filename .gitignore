@@ -3,3 +3,4 @@ node_modules
 *.swp
 *.pyc
 headhub-env
+local-info.txt
