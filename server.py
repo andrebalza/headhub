@@ -14,6 +14,31 @@ def validate_email(raw_email):
         return email
     return None
 
+def send_email(user, pwd, recipient, subject, body):
+    import smtplib
+
+    gmail_user = user
+    gmail_pwd = pwd
+    FROM = user
+    TO = recipient if type(recipient) is list else [recipient]
+    SUBJECT = subject
+    TEXT = body
+
+    message = """\From: %s\nTo: %s\nSubject: %s\n\n%s
+    """ % (FROM, ", ".join(TO), SUBJECT, TEXT)
+    try:
+        server = smtplib.SMTP("smtp.gmail.com", 587)
+        server.ehlo()
+        server.starttls()
+        server.login(gmail_user, gmail_pwd)
+        server.sendmail(FROM, TO, message)
+        server.close()
+        print 'successfully sent the mail'
+    except:
+        print "failed to send mail"
+    return 'ok'
+
+
 
 @app.route('/register-email/', methods=['POST'])
 def register_email():
@@ -21,6 +46,13 @@ def register_email():
     if email:
         with open('data/emails.txt', 'a') as f:
             f.write(email + '\n')
+	send_email("hiyafinland@gmail.com", 
+			"HeadHubCentral", 
+			email, 
+			"no-reply", 
+			"Welcome to Hiya " + '\n'
+			"Wait for the launch of this big community " +
+			"of hairdressers and haircuts")
     return 'ok'
 
 if __name__ == '__main__':
