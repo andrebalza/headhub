@@ -1,6 +1,8 @@
 import re
 from flask import Flask, render_template, request
+
 app = Flask(__name__)
+
 
 @app.route('/')
 def home():
@@ -13,6 +15,7 @@ def validate_email(raw_email):
     if regex.match(email):
         return email
     return None
+
 
 def send_email(user, pwd, recipient, subject, body):
     import smtplib
@@ -39,21 +42,21 @@ def send_email(user, pwd, recipient, subject, body):
     return 'ok'
 
 
-
 @app.route('/register-email/', methods=['POST'])
 def register_email():
     email = validate_email(request.form['email'])
     if email:
         with open('data/emails.txt', 'a') as f:
             f.write(email + '\n')
-	send_email("hiyafinland@gmail.com", 
-			"HeadHubCentral", 
-			email, 
-			"no-reply", 
-			"Welcome to Hiya " + '\n'
-			"Wait for the launch of this big community " +
-			"of hairdressers and haircuts")
+        send_email("hiyafinland@gmail.com",
+                   "HeadHubCentral",
+                   email,
+                   "no-reply",
+                   "Welcome to Hiya " + '\n'
+                   "Wait for the launch of this big community " +
+                   "of hairdressers and haircuts")
     return 'ok'
+
 
 if __name__ == '__main__':
     app.run(debug=True)
