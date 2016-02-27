@@ -8,6 +8,10 @@ app = Flask(__name__)
 def home():
     return render_template('index.html')
 
+@app.route('/mockup')
+def mockup():
+    return render_template('mockup.html')
+
 
 def validate_email(raw_email):
     email = raw_email.strip()
