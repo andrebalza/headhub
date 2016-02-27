@@ -744,3 +744,6 @@ body {
   margin: 0 10px;
   height: 50px;
 }
+#what-hiya .text-center .btn {
+  margin-top: 70px !important;
+}
