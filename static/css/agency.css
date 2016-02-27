@@ -731,3 +731,16 @@ img::-moz-selection {
 body {
   webkit-tap-highlight-color: #d04648;
 }
+#hiya-navbar .navbar-highlighted {
+  border-radius: 3px;
+  color: #d04648;
+  border: 1px solid #d04648;
+}
+#hiya-navbar .navbar-highlighted:hover {
+  color: #FFFFFF;
+  background-color: #d04648;
+}
+#hiya-navbar li.separator {
+  margin: 0 10px;
+  height: 50px;
+}
