@@ -15,7 +15,8 @@ module.exports = function(grunt) {
                     paths: ["static/css"]
                 },
                 files: {
-                    "static/css/<%= pkg.name %>.css": "static/less/<%= pkg.name %>.less"
+                    "static/css/<%= pkg.name %>.css": "static/less/<%= pkg.name %>.less",
+                    "static/css/mockup.css": "static/less/mockup.less"
                 }
             },
             minified: {
